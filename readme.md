@@ -4,12 +4,12 @@ Data pulled from here: https://github.com/AndresPMD/Fine_Grained_Clf
 
 Data sample
 <p align="left">
-            <img src="outputs/data.png" alt="data"/>
+            <img src="imgs/data.png" alt="data"/>
 </p> 
 
 Data label distribution
 <p align="left">
-            <img src="outputs/data_distribution.png" alt="data distribution"/>
+            <img src="imgs/data_distribution.png" alt="data distribution"/>
 </p> 
 
 results
