@@ -14,7 +14,40 @@ Data label distribution
 
 results
 
-for Resnet-18 as baseline model
+for Resnet-18 as baseline model: splits
+
+```
+              precision    recall  f1-score   support
+
+           0       0.63      0.68      0.65       443
+           1       0.65      0.66      0.66       369
+           2       0.90      0.86      0.88       412
+           3       0.92      0.92      0.92       423
+           4       0.45      0.79      0.57       218
+           5       0.85      0.71      0.78        63
+           6       0.61      0.35      0.44       147
+           7       0.74      0.51      0.61       341
+           8       0.49      0.62      0.54       138
+           9       0.80      0.79      0.79       378
+          10       0.70      0.56      0.62       111
+          11       0.84      0.34      0.49        79
+          12       0.77      0.68      0.72       418
+          13       0.90      0.90      0.90       492
+          14       0.59      0.52      0.55       352
+          15       0.53      0.68      0.59       151
+          16       0.81      0.69      0.74       303
+          17       0.69      0.82      0.75       444
+          18       0.83      0.86      0.85       425
+          19       0.79      0.81      0.80       455
+
+    accuracy                           0.73      6162
+   macro avg       0.72      0.69      0.69      6162
+weighted avg       0.75      0.73      0.73      6162
+```
+
+
+
+for Resnet-18 as baseline model: unrolled
 
 ```
               precision    recall  f1-score   support
