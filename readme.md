@@ -15,9 +15,10 @@ Data label distribution
 results
 
 OVERALL mAP
-
-bottle: 63.70<br>
+```
+bottle: 63.70
 context: 75.13
+```
 
 for Resnet-18 as baseline model: splits
 
