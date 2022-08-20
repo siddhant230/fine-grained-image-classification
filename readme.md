@@ -16,8 +16,10 @@ results
 
 OVERALL mAP
 ```
-bottle: 63.70
-context: 75.13
+dataset | baseline | theirs
+--------+----------+-------
+bottle  | 63.70    | 73.41
+context | 75.13    | 70.96
 ```
 
 for Resnet-18 as baseline model: splits
