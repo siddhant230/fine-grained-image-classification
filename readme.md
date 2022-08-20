@@ -16,7 +16,7 @@ results
 
 OVERALL mAP
 
-bottle: 63.70
+bottle: 63.70<br>
 context: 75.13
 
 for Resnet-18 as baseline model: splits
