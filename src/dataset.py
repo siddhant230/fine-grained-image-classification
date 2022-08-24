@@ -1,68 +1,103 @@
 import os
 import cv2
+import json
 import random
 from PIL import Image
+from collections import Counter
 import matplotlib.pyplot as plt
 
+import torch
 from torch.utils.data import Dataset
 import torchvision.transforms as transforms
 
 
-class BottleDataset(Dataset):
-    def __init__(self, data_path, split="train"):
+class CommonDataset(Dataset):
+    def __init__(self, data_path="./data", split=0, mode="train", verbose=1):
+
         self.split = split
+        self.mode = mode
         self.data_path = data_path
-        self.split_size = 0.2
-        if self.split == "train":
-            self.split_size = 1 - self.split_size
-        self.transform = transforms.Compose(
-            [
+
+        print(f"[INFO]: split: {split} | path: {data_path}")
+        print(
+            f"[INFO]: mode: {mode} | split_file: {self.data_path +'/split_'+ str(self.split) +'.json'}")
+
+        with open(self.data_path + '/split_' + str(self.split) + '.json', 'r') as fp:
+            self.gt_annotations = json.load(fp)
+
+        with open(self.data_path + '/classes.json', 'r') as fp:
+            self.classes_labels = json.load(fp)
+
+        if self.mode == "train":
+            self.transform = transforms.Compose([
+                transforms.Resize((256, 256)),
+                transforms.RandomRotation(degrees=15),
+                transforms.ColorJitter(),
+                transforms.RandomHorizontalFlip(),
+                transforms.RandomCrop(224),
+                transforms.ToTensor(),
+                transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                     std=[0.229, 0.224, 0.225])
+            ])
+        else:
+            self.transform = transforms.Compose([
                 transforms.Resize((224, 224)),
                 transforms.ToTensor(),
-                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
-            ]
-        )
-        # getting all images
-        self.img_names = os.listdir(self.data_path)
-        # selecting first k of shuffled
-        k = int(len(self.img_names)*self.split_size)
-        random.shuffle(self.img_names)
-        self.data = self.img_names[:k]
-        self.visualize()
+                transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                     std=[0.229, 0.224, 0.225])
+            ])
 
-    def visualize(self, w=20, h=20):
-        data_dist = {}
-        for name in self.data:
-            k = int(name.split("-")[0])-1
-            if k not in data_dist:
-                data_dist[k] = 0
-            data_dist[k] += 1
-        print("\n\n")
+        self.image_list = list(self.gt_annotations[self.mode].keys())
+        self.num_classes = len(
+            Counter(self.gt_annotations[self.mode].values()))
+        print(f"Total num classes: {self.num_classes}")
+        if verbose:
+            self.visalize()
 
+    def visalize(self, w=50, h=50, columns=4, rows=5):
+        w = 20
+        h = 20
         fig = plt.figure(figsize=(8, 8))
-        columns = 4
-        rows = 5
         for i in range(1, columns*rows + 1):
-            img = cv2.imread(os.path.join(self.data_path, self.data[i]))
+            idx = np.random.randint(1, len(self.image_list)-1)
+            img = cv2.imread(os.path.join(
+                self.data_path, self.image_list[idx]))
             fig.add_subplot(rows, columns, i)
-            plt.title(int(self.data[i].split("-")[0])-1)
+            plt.title(
+                self.classes_labels[self.gt_annotations[self.mode][self.image_list[idx]]])
+            plt.gca().axes.get_yaxis().set_visible(False)
             plt.imshow(img)
+
         plt.show()
-        print("\n\n")
-        data_dist = dict(sorted(data_dist.items()))
+        data_dist = Counter(self.gt_annotations[self.mode].values())
+        print("\nclass distribution with data size of: ", sum(data_dist.values()))
+        plt.figure(figsize=(4, 1))
         plt.bar(range(len(data_dist)), list(
             data_dist.values()), align='center')
-        plt.xticks(range(len(data_dist)), list(data_dist.keys()))
         plt.show()
+        print("----------------------------------------------------")
 
     def __len__(self):
-        return len(self.data)
+        return len(self.gt_annotations[self.mode])
 
     def __getitem__(self, idx):
-        img = Image.open(os.path.join(self.data_path, self.data[idx]))
-        label = int(self.data[idx].split("-")[0])-1
+        image_name = self.image_list[idx]
+        img = Image.open(os.path.join(
+            self.data_path, image_name)).convert('RGB')
+        # print(os.path.join(self.data_path, image_name))
+        img_class = self.gt_annotations[self.mode][image_name]
+        label = np.zeros(self.num_classes)
+        label[int(img_class) - 1] = 1
+        label = torch.from_numpy(label)
+        label = label.type(torch.FloatTensor)
+        label_name = self.classes_labels[img_class]
 
         if self.transform:
             img = self.transform(img)
 
-        return img, label
+        return img, label, label_name
+
+
+if __name__ == "__main__":
+    dataset = CommonDataset(data_path="./data/context/", mode="train", split=0)
+    dataset = CommonDataset(data_path="./data/context/", mode="test", split=1)
