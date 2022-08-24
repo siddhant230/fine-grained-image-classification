@@ -19,7 +19,7 @@ OVERALL mAP
 dataset | baseline | theirs | CLIP(zero-shot) | CLIP(trainable image)
 --------+----------+--------+-----------------+------------------------
 bottle  | 63.70    | 73.41  |    -            |
-context | 75.13    | 70.96  |   0.553         |
+context | 75.13    | 70.96  |   55.10         |
 ``` 
 
 
