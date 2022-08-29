@@ -18,9 +18,61 @@ OVERALL mAP
 ```
 dataset | baseline | theirs | CLIP(zero-shot) | CLIP(trainable image)
 --------+----------+--------+-----------------+----------------------
-bottle  | 63.70    | 73.41  |   47.88         |
-context | 75.13    | 70.96  |   56.82         |
+bottle  | 63.70    | 73.41  |   47.88         |     20.46
+context | 75.13    | 70.96  |   56.82         |     25.60
 ``` 
+
+<table>
+<tr>
+   <th colspan="7">Image encoder</th>
+   <th colspan="7">Method</th>
+   <th colspan="14">Dataset</th>
+</tr>
+
+<tr>
+   <th colspan="7"></th>
+   <th colspan="3">ENCODER</th>
+   <th colspan="3">NORMS</th>
+   <th colspan="7">CONTEXT</th>
+   <th colspan="7">BOTTLE</th>
+</tr>
+
+<tr>
+   <th colspan="7" rowspan="3">VIT</th>
+</tr>
+
+<tr>
+   <th colspan="3" style="font-size:15px;">frozen</th>
+   <th colspan="3" style="font-size:15px;">frozen</th>
+   <th colspan="7" style="font-size:15px;">83.20</th>
+   <th colspan="7" style="font-size:15px;">69.20</th>
+</tr>
+
+<tr>
+   <th colspan="3" style="font-size:15px;">frozen</th>
+   <th colspan="3" style="font-size:15px;">train</th>
+   <th colspan="7" style="font-size:15px;">88.05</th>
+   <th colspan="7" style="font-size:15px;">73.70</th>
+</tr>
+
+<tr>
+   <th colspan="7" rowspan="4">Res50</th>
+</tr>
+<tr>
+   <th colspan="3">frozen</th>
+   <th colspan="3">frozen</th>
+   <th colspan="7">78.20</th>
+   <th colspan="7">62.80</th>
+</tr>
+
+<tr>
+   <th colspan="3">frozen</th>
+   <th colspan="3">train</th>
+   <th colspan="7">70.26</th>
+   <th colspan="7">60.68</th>
+</tr>
+</table>
+
 
 
 for CLIP(zero-shot):
