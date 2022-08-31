@@ -22,6 +22,8 @@ bottle  | 63.70    | 73.41  |   47.88         |     20.46             |         
 context | 75.13    | 70.96  |   56.82         |     25.60             |            61.17
 ``` 
 
+---
+
 <table>
 <tr>
    <th colspan="7">Image encoder</th>
@@ -72,6 +74,8 @@ context | 75.13    | 70.96  |   56.82         |     25.60             |         
    <th colspan="7">60.68</th>
 </tr>
 </table>
+
+---
 
 for CLIP (OOD)-(zero-shot):
 
