@@ -22,8 +22,14 @@ bottle  | 63.70    | 73.41  |   47.88         |     20.46             |         
 context | 75.13    | 70.96  |   56.82         |     25.60             |            61.17
 ``` 
 
----
+```
+                            BOTTLE          |        CONTEXT
+                      train   |    eval     |    train   |    eval 
+zero-shot         :  35.1317  |   60.1394   |     56.49  |    57.81
+after norm train  :  39.28    |   61.85     |     66.60  |    57.39
+```
 
+---
 <table>
 <tr>
    <th colspan="7">Image encoder</th>
