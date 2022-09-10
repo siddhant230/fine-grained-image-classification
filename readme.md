@@ -52,25 +52,19 @@ after norm train  :  39.28    |   61.85     |     66.60  |    57.39
 <tr>
    <th colspan="3" style="font-size:15px;">frozen</th>
    <th colspan="3" style="font-size:15px;">frozen</th>
-   <th colspan="7" style="font-size:15px;">83.20</th>
-   <th colspan="7" style="font-size:15px;">69.20</th>
+   <th colspan="7" style="font-size:15px;">79.60</th>
+   <th colspan="7" style="font-size:15px;">65.20</th>
 </tr>
 
 <tr>
    <th colspan="3" style="font-size:15px;">frozen</th>
    <th colspan="3" style="font-size:15px;">train</th>
-   <th colspan="7" style="font-size:15px;">88.05</th>
-   <th colspan="7" style="font-size:15px;">73.70</th>
+   <th colspan="7" style="font-size:15px;">83.05</th>
+   <th colspan="7" style="font-size:15px;">69.70</th>
 </tr>
 
 <tr>
    <th colspan="7" rowspan="4">Res50</th>
-</tr>
-<tr>
-   <th colspan="3">frozen</th>
-   <th colspan="3">frozen</th>
-   <th colspan="7">78.20</th>
-   <th colspan="7">62.80</th>
 </tr>
 
 <tr>
@@ -79,6 +73,14 @@ after norm train  :  39.28    |   61.85     |     66.60  |    57.39
    <th colspan="7">70.26</th>
    <th colspan="7">60.68</th>
 </tr>
+
+<tr>
+   <th colspan="3">frozen</th>
+   <th colspan="3">frozen</th>
+   <th colspan="7">78.20</th>
+   <th colspan="7">62.80</th>
+</tr>
+
 </table>
 
 ---
