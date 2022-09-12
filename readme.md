@@ -30,6 +30,18 @@ after norm train  :  39.28    |   61.85     |     66.60  |    57.39
 ```
 
 ---
+```
+for VIT: (frozen weights-Trainable norms)
+
+dataset |  Bottle  | Context
+--------+----------+--------+
+add     | 58.60    | 75.88  |
+conact  | 60.20    | 80.34  |
+mul     | 60.45    | 80.56  |
+dynamic | 59.86    | 78.56  |
+```
+
+---
 <table>
 <tr>
    <th colspan="7">Image encoder</th>
